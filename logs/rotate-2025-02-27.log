@@ -1,0 +1,4 @@
+{"label":"Spare Spart api logs","level":"error","message":"Request failed with status code 500"}
+{"content_length":"60","label":"Spare Spart api logs","level":"http","message":"incoming-api-request","method":"POST","response_time":1458.37,"status":500,"url":"/spauthservices/api/v1/user/register"}
+{"label":"Spare Spart api logs","level":"error","message":"Request failed with status code 500"}
+{"content_length":"60","label":"Spare Spart api logs","level":"http","message":"incoming-api-request","method":"POST","response_time":1272.748,"status":500,"url":"/spauthservices/api/v1/user/register"}
