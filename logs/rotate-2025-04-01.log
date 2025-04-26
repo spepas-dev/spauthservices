@@ -1,0 +1,3 @@
+{"label":"Spare Spart api logs","level":"debug","message":"Spare Part Auth Service: Running in development mode and listening on port http://:9007"}
+{"label":"Spare Spart api logs","level":"info","message":"Success"}
+{"content_length":"2060","label":"Spare Spart api logs","level":"http","message":"incoming-api-request","method":"POST","response_time":5879.17,"status":200,"url":"/spauthservices/api/v1/user/login"}

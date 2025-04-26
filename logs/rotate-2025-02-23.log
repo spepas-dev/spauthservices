@@ -1,6 +1,0 @@
-{"label":"Spare Spart api logs","level":"debug","message":"Spare Part Auth Service: Running in development mode and listening on port http://:9007"}
-{"label":"Spare Spart api logs","level":"error","message":"Not found"}
-{"content_length":"34","label":"Spare Spart api logs","level":"http","message":"incoming-api-request","method":"POST","response_time":2.563,"status":404,"url":"/spauthservices/api/v1/login_by_phone"}
-{"label":"Spare Spart api logs","level":"info","message":"Success"}
-{"content_length":"713","label":"Spare Spart api logs","level":"http","message":"incoming-api-request","method":"POST","response_time":1581.057,"status":200,"url":"/spauthservices/api/v1/user/login_by_phone"}
-{"label":"Spare Spart api logs","level":"debug","message":"Spare Part Auth Service: Running in development mode and listening on port http://:9007"}
