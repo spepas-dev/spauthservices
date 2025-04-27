@@ -10,7 +10,7 @@ COPY middleware ./middleware
 COPY routes ./routes
 COPY config ./config
 COPY utils ./utils
-COPY ServiceIntegration ./ServiceIntegration
+# COPY ServiceIntegration ./ServiceIntegration
 COPY server.js ./
 RUN npm install -g pm2
 RUN npm install
