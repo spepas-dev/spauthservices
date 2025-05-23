@@ -121,6 +121,13 @@ exports.UPLOAD_REG_DOC = asynHandler(async (req, res, next) => {
   console.log("Cloudinary Config:", cloudinary.config());
 
   try {
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      resource_type: "raw", // Specify raw for non-image files
+      folder: "BusinessDoc", // Optional: Organize files in a folder
+    });
+
+    fs.unlinkSync(req.file.path);
+
     var loginUrl = process.env.DB_BASE_URL + "seller/details/" + Seller_ID;
     let newJob = await UtilityHelper.makeHttpRequest("GET", loginUrl);
 
@@ -138,8 +145,8 @@ exports.UPLOAD_REG_DOC = asynHandler(async (req, res, next) => {
 
     let sellerDetails = newJob.data;
 
-    sellerDetails.business_reg_url = body.result.secure_url;
-    sellerDetails.business_reg_obj = body.result;
+    sellerDetails.business_reg_url = result.secure_url;
+    sellerDetails.business_reg_obj = result;
 
     var updateURL = process.env.DB_BASE_URL + "seller/update";
 
