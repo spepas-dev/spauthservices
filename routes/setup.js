@@ -163,7 +163,7 @@ router
 router.route("/seller/profile").post(NoneUserCheck, VALIDATE_TOKEN, ADD_SELLER);
 router
   .route("/seller/upload-doc")
-  .post(NoneUserCheck, VALIDATE_TOKEN, UPLOAD_REG_DOC);
+  .post(NoneUserCheck, VALIDATE_TOKEN, upload.single("file"), UPLOAD_REG_DOC);
 
 //Mepa
 router.route("/mepa/register").post(NoneUserCheck, VALIDATE_TOKEN, ADD_MEPA);
