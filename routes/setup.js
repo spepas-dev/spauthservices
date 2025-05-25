@@ -163,7 +163,7 @@ router
 router.route("/seller/profile").post(NoneUserCheck, VALIDATE_TOKEN, ADD_SELLER);
 router
   .route("/seller/upload-doc")
-  .post(NoneUserCheck, VALIDATE_TOKEN, upload.single("file"), UPLOAD_REG_DOC);
+  .post(NoneUserCheck, VALIDATE_TOKEN, UPLOAD_REG_DOC);
 
 //Mepa
 router.route("/mepa/register").post(NoneUserCheck, VALIDATE_TOKEN, ADD_MEPA);
@@ -178,7 +178,7 @@ router
   .post(NoneUserCheck, VALIDATE_TOKEN, ADD_DELIVER);
 router
   .route("/deliver/upload-image")
-  .post(NoneUserCheck, VALIDATE_TOKEN, upload.single("file"), UPLOAD_IMAGE);
+  .post(NoneUserCheck, VALIDATE_TOKEN, UPLOAD_IMAGE);
 
 router
   .route("/deliver/register-vehicle")
@@ -191,11 +191,6 @@ router
   .get(NoneUserCheck, VALIDATE_TOKEN, DELIVER_VEHICLES);
 router
   .route("/deliver/upload-vehicle-image")
-  .post(
-    NoneUserCheck,
-    VALIDATE_TOKEN,
-    upload.single("file"),
-    UPLOAD_VEHICLE_IMAGE
-  );
+  .post(NoneUserCheck, VALIDATE_TOKEN, UPLOAD_VEHICLE_IMAGE);
 
 module.exports = router;
