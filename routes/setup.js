@@ -7,6 +7,7 @@ const { TestController } = require("../controllers/test");
 
 const {
   LOGIN,
+  ADMIN_LOGIN,
   REGISTER,
   ACTIVATE,
   CHANGE_PASSWORD,
@@ -81,6 +82,8 @@ router.route("/testapi").get(TestController);
 
 //user details
 router.route("/user/login").post(NoneUserCheck, LOGIN);
+router.route("/user/admin-login").post(NoneUserCheck, ADMIN_LOGIN);
+
 router.route("/user/login_by_phone").post(NoneUserCheck, USER_BY_PHONE_NUMBER);
 router.route("/user/all-admin-users").get(NoneUserCheck, VALIDATE_TOKEN,ALL_ADMIN_USERS);
 router.route("/user/all-gopas").get(NoneUserCheck, VALIDATE_TOKEN,ALL_GOPAS);

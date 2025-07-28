@@ -127,6 +127,84 @@ exports.LOGIN = asynHandler(async (req, res, next) => {
  
 
 
+ exports.ADMIN_LOGIN = asynHandler(async (req, res, next) => {
+
+  
+    
+    let {email, password} = req.body;
+ 
+ 
+ 
+   var loginUrl = process.env.DB_BASE_URL +"user/login"; 
+  
+      var requestData = {
+        email,
+        password
+      }
+ 
+    
+ 
+  
+    let newJob = await UtilityHelper.makeHttpRequest("POST",loginUrl,requestData);
+ 
+ 
+ 
+        if(!newJob)
+         {
+             var resp = {
+                 status : RESPONSE_CODES.FAILED,
+                 message : "Failed to connect to services"
+             };
+             return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+         }
+ 
+           
+         if(newJob.status != RESPONSE_CODES.SUCCESS){
+            return UtilityHelper.sendResponse(res, 200, newJob.message, newJob);
+         }
+
+
+          if(newJob.data.user_type != "ADMIN")
+            {
+                var resp = {
+                    status : RESPONSE_CODES.FAILED,
+                    message : "Invalid access"
+                };
+                return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+            }
+     
+
+
+         var tokenDetails = {
+            User_ID : newJob.data.User_ID
+         }
+
+         const token = jwt.sign(tokenDetails, process.env.JWT_TOKEN, { expiresIn: '10h' });
+         const refresh_token = jwt.sign(tokenDetails, process.env.JWT_TOKEN_REFRESH, { expiresIn: '20h' });
+
+         
+
+         delete newJob.data.id;
+         delete newJob.data.User_ID;
+         delete newJob.data.password;
+
+         var resData =  {
+            token : token,
+            user: newJob.data,
+            refresh_token:refresh_token
+         };
+
+    var resp = {
+        status : RESPONSE_CODES.SUCCESS,
+        message : "Success",
+        data : resData
+    };
+ 
+    return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+ 
+ })
+ 
+
 
 
  exports.REGISTER = asynHandler(async (req, res, next) => {
