@@ -97,7 +97,7 @@ app.use((error, req, res, next) => {
   logger.error(error.message);
 });
 //create port
-const PORT = process.env.PORT || 9006;
+const PORT = process.env.PORT || 9007;
 
 // function startElasticSearch() {
 //   checkConnection();

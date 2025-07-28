@@ -22,9 +22,9 @@ exports.LOGIN = asynHandler(async (req, res, next) => {
  
     
  
- 
+    console.log("================coming to make a request================")
     let newJob = await UtilityHelper.makeHttpRequest("POST",loginUrl,requestData);
- 
+    console.log("================after request================")
  
  
         if(!newJob)
@@ -789,3 +789,296 @@ exports.USER_BY_PHONE_NUMBER = asynHandler(async (req, res, next) => {
  
 
 
+
+ exports.USER_BY_USER_ID = asynHandler(async (req, res, next) => {
+
+  
+    
+    let {user_id} = req.params;
+ 
+ 
+    console.log(`=================${user_id}`)
+   var loginUrl = process.env.DB_BASE_URL +"user/by-id-full/"+user_id; 
+  
+
+    
+ 
+ 
+    let newJob = await UtilityHelper.makeHttpRequest("GET",loginUrl);
+ 
+ 
+ 
+        if(!newJob)
+         {
+             var resp = {
+                 status : RESPONSE_CODES.FAILED,
+                 message : "Failed to connect to services"
+             };
+             return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+         }
+ 
+           
+         if(newJob.status != RESPONSE_CODES.SUCCESS){
+            return UtilityHelper.sendResponse(res, 200, newJob.message, newJob);
+         }
+
+
+
+        
+    var resp = {
+        status : RESPONSE_CODES.SUCCESS,
+        message : "Success",
+        data : newJob.data
+    };
+ 
+    return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+ 
+ })
+
+
+ exports.ALL_ADMIN_USERS = asynHandler(async (req, res, next) => {
+
+  
+    
+    //let {phoneNumber} = req.body;
+ 
+ 
+ 
+   var loginUrl = process.env.DB_BASE_URL +"user/all-admin-users"; 
+  
+
+    
+ 
+ 
+    let newJob = await UtilityHelper.makeHttpRequest("GET",loginUrl);
+ 
+ 
+ 
+        if(!newJob)
+         {
+             var resp = {
+                 status : RESPONSE_CODES.FAILED,
+                 message : "Failed to connect to services"
+             };
+             return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+         }
+ 
+           
+         if(newJob.status != RESPONSE_CODES.SUCCESS){
+            return UtilityHelper.sendResponse(res, 200, newJob.message, newJob);
+         }
+
+
+
+
+
+
+    var resp = {
+        status : RESPONSE_CODES.SUCCESS,
+        message : "Success",
+        data : newJob.data
+    };
+ 
+    return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+ 
+ })
+
+
+
+ exports.ALL_GOPAS = asynHandler(async (req, res, next) => {
+
+  
+    
+    //let {phoneNumber} = req.body;
+ 
+ 
+ 
+   var loginUrl = process.env.DB_BASE_URL +"user/all-gopas"; 
+  
+
+    
+ 
+ 
+    let newJob = await UtilityHelper.makeHttpRequest("GET",loginUrl);
+ 
+ 
+ 
+        if(!newJob)
+         {
+             var resp = {
+                 status : RESPONSE_CODES.FAILED,
+                 message : "Failed to connect to services"
+             };
+             return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+         }
+ 
+           
+         if(newJob.status != RESPONSE_CODES.SUCCESS){
+            return UtilityHelper.sendResponse(res, 200, newJob.message, newJob);
+         }
+
+
+
+
+
+
+    var resp = {
+        status : RESPONSE_CODES.SUCCESS,
+        message : "Success",
+        data : newJob.data
+    };
+ 
+    return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+ 
+ })
+
+
+
+
+ exports.ALL_MEPAS = asynHandler(async (req, res, next) => {
+
+  
+    
+    //let {phoneNumber} = req.body;
+ 
+ 
+ 
+   var loginUrl = process.env.DB_BASE_URL +"user/all-mepas"; 
+  
+
+    
+ 
+ 
+    let newJob = await UtilityHelper.makeHttpRequest("GET",loginUrl);
+ 
+ 
+ 
+        if(!newJob)
+         {
+             var resp = {
+                 status : RESPONSE_CODES.FAILED,
+                 message : "Failed to connect to services"
+             };
+             return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+         }
+ 
+           
+         if(newJob.status != RESPONSE_CODES.SUCCESS){
+            return UtilityHelper.sendResponse(res, 200, newJob.message, newJob);
+         }
+
+
+
+
+
+
+    var resp = {
+        status : RESPONSE_CODES.SUCCESS,
+        message : "Success",
+        data : newJob.data
+    };
+ 
+    return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+ 
+ })
+
+
+
+
+ exports.ALL_BUYERS = asynHandler(async (req, res, next) => {
+
+  
+    
+    //let {phoneNumber} = req.body;
+ 
+ 
+ 
+   var loginUrl = process.env.DB_BASE_URL +"user/all-buyers"; 
+  
+
+    
+ 
+ 
+    let newJob = await UtilityHelper.makeHttpRequest("GET",loginUrl);
+ 
+ 
+ 
+        if(!newJob)
+         {
+             var resp = {
+                 status : RESPONSE_CODES.FAILED,
+                 message : "Failed to connect to services"
+             };
+             return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+         }
+ 
+           
+         if(newJob.status != RESPONSE_CODES.SUCCESS){
+            return UtilityHelper.sendResponse(res, 200, newJob.message, newJob);
+         }
+
+
+
+
+
+
+    var resp = {
+        status : RESPONSE_CODES.SUCCESS,
+        message : "Success",
+        data : newJob.data
+    };
+ 
+    return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+ 
+ })
+
+
+
+
+
+exports.REGISTER_USER_BY_ADMIN = asynHandler(async (req, res, next) => {
+
+
+   
+    let {body,user} = req;
+  
+   // body.added_by = user.User_ID;
+   body.registeredBy = user.User_ID;
+   body.verificationStatus = 1;
+
+
+
+   console.log("================coming to make a registration request================")
+   var updateURL = process.env.DB_BASE_URL +"user/register"; 
+
+   let newUserUpdate = await UtilityHelper.makeHttpRequest("POST",updateURL, body);
+
+   console.log("================after registration request================")
+
+   if(!newUserUpdate)
+       {
+           var resp = {
+               status : RESPONSE_CODES.FAILED,
+               message : "Failed to connect to database services"
+           };
+           return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+       }
+
+
+
+       if(newUserUpdate.status != RESPONSE_CODES.SUCCESS){
+           return UtilityHelper.sendResponse(res, 200, newUserUpdate.message, newUserUpdate);
+        }
+
+
+
+   var resp = {
+    status : RESPONSE_CODES.SUCCESS,
+    message : "User details added successfully",
+    data: newUserUpdate.data
+};
+
+
+   return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+
+})

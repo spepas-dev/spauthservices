@@ -14,6 +14,12 @@ const {
   VALIDATE_FORGOT_PASSWORD,
   REFRESH_USER_TOKEN,
   USER_BY_PHONE_NUMBER,
+  ALL_ADMIN_USERS,
+  REGISTER_USER_BY_ADMIN,
+  USER_BY_USER_ID,
+  ALL_GOPAS,
+  ALL_MEPAS,
+  ALL_BUYERS
 } = require("../controllers/UserController");
 
 const {
@@ -76,6 +82,16 @@ router.route("/testapi").get(TestController);
 //user details
 router.route("/user/login").post(NoneUserCheck, LOGIN);
 router.route("/user/login_by_phone").post(NoneUserCheck, USER_BY_PHONE_NUMBER);
+router.route("/user/all-admin-users").get(NoneUserCheck, VALIDATE_TOKEN,ALL_ADMIN_USERS);
+router.route("/user/all-gopas").get(NoneUserCheck, VALIDATE_TOKEN,ALL_GOPAS);
+router.route("/user/all-mepas").get(NoneUserCheck, VALIDATE_TOKEN,ALL_MEPAS);
+router.route("/user/all-buyers").get(NoneUserCheck, VALIDATE_TOKEN,ALL_BUYERS);
+
+
+router.route("/user/admin-register").post(NoneUserCheck, VALIDATE_TOKEN,REGISTER_USER_BY_ADMIN);
+
+router.route("/user/by-id/:user_id").get(NoneUserCheck, VALIDATE_TOKEN, USER_BY_USER_ID);
+
 
 router.route("/user/register").post(NoneUserCheck, REGISTER);
 router.route("/user/activate").post(NoneUserCheck, ACTIVATE);
