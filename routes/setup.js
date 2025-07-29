@@ -20,7 +20,9 @@ const {
   USER_BY_USER_ID,
   ALL_GOPAS,
   ALL_MEPAS,
-  ALL_BUYERS
+  ALL_BUYERS,
+  ALL_SELLERS,
+ ALL_RIDERS
 } = require("../controllers/UserController");
 
 const {
@@ -89,8 +91,11 @@ router.route("/user/all-admin-users").get(NoneUserCheck, VALIDATE_TOKEN,ALL_ADMI
 router.route("/user/all-gopas").get(NoneUserCheck, VALIDATE_TOKEN,ALL_GOPAS);
 router.route("/user/all-mepas").get(NoneUserCheck, VALIDATE_TOKEN,ALL_MEPAS);
 router.route("/user/all-buyers").get(NoneUserCheck, VALIDATE_TOKEN,ALL_BUYERS);
+router.route("/user/all-sellers").get(NoneUserCheck, VALIDATE_TOKEN,ALL_SELLERS);
+router.route("/user/all-riders").get(NoneUserCheck, VALIDATE_TOKEN,ALL_RIDERS);
 
 
+ 
 router.route("/user/admin-register").post(NoneUserCheck, VALIDATE_TOKEN,REGISTER_USER_BY_ADMIN);
 
 router.route("/user/by-id/:user_id").get(NoneUserCheck, VALIDATE_TOKEN, USER_BY_USER_ID);

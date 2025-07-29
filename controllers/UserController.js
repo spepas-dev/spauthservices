@@ -1114,6 +1114,106 @@ exports.USER_BY_PHONE_NUMBER = asynHandler(async (req, res, next) => {
 
 
 
+
+ exports.ALL_SELLERS = asynHandler(async (req, res, next) => {
+
+  
+    
+    //let {phoneNumber} = req.body;
+ 
+ 
+ 
+   var loginUrl = process.env.DB_BASE_URL +"user/all-sellers"; 
+  
+
+    
+ 
+ 
+    let newJob = await UtilityHelper.makeHttpRequest("GET",loginUrl);
+ 
+ 
+ 
+        if(!newJob)
+         {
+             var resp = {
+                 status : RESPONSE_CODES.FAILED,
+                 message : "Failed to connect to services"
+             };
+             return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+         }
+ 
+           
+         if(newJob.status != RESPONSE_CODES.SUCCESS){
+            return UtilityHelper.sendResponse(res, 200, newJob.message, newJob);
+         }
+
+
+
+
+
+
+    var resp = {
+        status : RESPONSE_CODES.SUCCESS,
+        message : "Success",
+        data : newJob.data
+    };
+ 
+    return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+ 
+ })
+
+ 
+
+
+ exports.ALL_RIDERS = asynHandler(async (req, res, next) => {
+
+  
+    
+    //let {phoneNumber} = req.body;
+ 
+ 
+ 
+   var loginUrl = process.env.DB_BASE_URL +"user/all-riders"; 
+  
+
+    
+ 
+ 
+    let newJob = await UtilityHelper.makeHttpRequest("GET",loginUrl);
+ 
+ 
+ 
+        if(!newJob)
+         {
+             var resp = {
+                 status : RESPONSE_CODES.FAILED,
+                 message : "Failed to connect to services"
+             };
+             return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+         }
+ 
+           
+         if(newJob.status != RESPONSE_CODES.SUCCESS){
+            return UtilityHelper.sendResponse(res, 200, newJob.message, newJob);
+         }
+
+
+
+
+
+
+    var resp = {
+        status : RESPONSE_CODES.SUCCESS,
+        message : "Success",
+        data : newJob.data
+    };
+ 
+    return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+ 
+ })
+
+
+
 exports.REGISTER_USER_BY_ADMIN = asynHandler(async (req, res, next) => {
 
 
