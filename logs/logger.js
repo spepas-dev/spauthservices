@@ -2,8 +2,8 @@ const winston = require("winston");
 const {
   ElasticsearchTransformer,
   ElasticsearchTransport,
-  LogData,
-  TransformedData,
+  // LogData,
+  // TransformedData,
 } = require("winston-elasticsearch");
 
 const { combine, label, json, errors } = winston.format;
@@ -11,8 +11,7 @@ const { combine, label, json, errors } = winston.format;
 const esTransformer = (logData) => {
   return ElasticsearchTransformer(logData);
 };
-
-// label
+//Label
 const CATEGORY = "Spepas Auth Service API Log";
 
 const winstonLogger = (elasticsearchNode, name, level) => {

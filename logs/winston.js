@@ -9,7 +9,7 @@ require("dotenv").config();
 
 const logger = winstonLogger(
   `${process.env.ELASTIC_SEARCH_URL}`,
-  "authenticationServer",
+  "authServer",
   "debug"
 );
 
@@ -25,7 +25,7 @@ const fileRotateTransport = new transports.DailyRotateFile({
 
 // const logger = createLogger({
 //   level: "debug",
-//   format: combine(errors({ stack: true }), label({ label: CATEGORY }), json()),
+//   format: combine(errors({ stack: true }),label({ label: CATEGORY }), json()),
 //   transports: [fileRotateTransport, new transports.Console()],
 // });
 
