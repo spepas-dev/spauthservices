@@ -37,6 +37,7 @@ const {
   GROUP_APPLICATIONS,
   ADD_APPLICATION_MENU_GROUP,
   GROUP_MNUS,
+  GROUP_DETAILS,
   ALL_GROUPS,
   ADD_USERS_GROUPS,
 } = require("../controllers/GroupController");
@@ -142,6 +143,11 @@ router
 router
   .route("/group/menus/:group_id")
   .get(NoneUserCheck, VALIDATE_TOKEN, GROUP_MNUS);
+  router
+  .route("/group/details/:group_id")
+  .get(NoneUserCheck, VALIDATE_TOKEN, GROUP_DETAILS);
+
+  
 router.route("/group/all").get(NoneUserCheck, VALIDATE_TOKEN, ALL_GROUPS);
 router
   .route("/group/add-users-groups")

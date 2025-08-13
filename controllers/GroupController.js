@@ -211,6 +211,48 @@ exports.GROUP_MNUS = asynHandler(async (req, res, next) => {
 
 
 
+exports.GROUP_DETAILS = asynHandler(async (req, res, next) => {
+
+  
+   
+    let {user} = req;
+    let {group_id} = req.params;
+
+
+
+  var loginUrl = process.env.DB_BASE_URL +"group/details-full/"+group_id; 
+ 
+  let newJob = await UtilityHelper.makeHttpRequest("GET",loginUrl);
+
+
+  if(!newJob)
+    {
+        var resp = {
+            status : RESPONSE_CODES.FAILED,
+            message : "Failed to connect to database services"
+        };
+        return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+    }
+
+    if(newJob.status != RESPONSE_CODES.SUCCESS){
+        return UtilityHelper.sendResponse(res, 200, newJob.message, newJob);
+     }
+
+    
+
+   var resp = {
+    status : RESPONSE_CODES.SUCCESS,
+    message : "Successful",
+    data: newJob.data
+};
+
+
+   return UtilityHelper.sendResponse(res, 200, resp.message, resp);
+
+})
+
+
+
 
 
 exports.ALL_GROUPS = asynHandler(async (req, res, next) => {
