@@ -592,7 +592,7 @@ exports.REFRESH_USER_TOKEN = asynHandler(async (req, res, next) => {
 exports.USER_BY_PHONE_NUMBER = asynHandler(async (req, res, next) => {
   let { phoneNumber } = req.body;
 
-  var loginUrl = process.env.DB_BASE_URL + "user/by-phone/" + phoneNumber;
+  var loginUrl = process.env.DB_BASE_URL + "user/by-phone-full/" + phoneNumber;
 
   let newJob = await UtilityHelper.makeHttpRequest("GET", loginUrl);
 
